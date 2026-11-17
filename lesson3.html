@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 3 | What is a Computer Network?</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:#17234d;background:#f3f6ff}
+header{color:#fff;padding:17px 6%;background:linear-gradient(110deg,#18265e,#6338a2,#087eaa);background-size:200% 200%;animation:shift 10s ease infinite;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+@keyframes shift{50%{background-position:100% 50%}}header strong{font-size:19px}nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:bold;font-size:14px}
+.hero{padding:62px 7% 54px;color:#fff;background:linear-gradient(130deg,#172b70,#6035a4,#087fa9);position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border:2px solid #ffffff20;border-radius:50%;width:280px;height:280px;right:8%;top:-140px;animation:orbit 18s linear infinite}.hero:after{width:390px;height:390px;right:4%;top:-190px;animation-direction:reverse}
+@keyframes orbit{to{transform:rotate(360deg)}}.hero-inner{max-width:1050px;margin:auto;position:relative;z-index:1;animation:rise .8s both}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{letter-spacing:2px;text-transform:uppercase;font-size:12px;color:#bfeaff;font-weight:bold}.hero h1{font-size:clamp(36px,6vw,60px);margin:14px 0}.hero p{font-size:18px;line-height:1.7;max-width:760px;color:#e9edff}
+main{max-width:1120px;margin:35px auto;padding:0 22px}.welcome{background:#fff;border-radius:18px;padding:22px 25px;box-shadow:0 8px 28px #27346b12;margin-bottom:28px;border-left:5px solid #6554db}
+h2{font-size:27px;margin:35px 0 10px}.lead{line-height:1.8;color:#58627f}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px;margin:20px 0}.objective{background:#e7edff;padding:17px;border-radius:14px;font-weight:bold;color:#34427c}
+.network-picture{margin:25px 0;background:#101d56;border-radius:22px;padding:12px;box-shadow:0 16px 40px #18265e28;overflow:hidden}.network-picture img{display:block;width:100%;height:auto;border-radius:14px;transition:transform .35s}.network-picture img:hover{transform:scale(1.015)}
+.network-demo{background:radial-gradient(circle at center,#263d91,#101d56 75%);color:#fff;border-radius:20px;padding:25px;margin:25px 0;overflow:hidden;position:relative}
+.network-demo:before{content:"";position:absolute;width:450px;height:450px;border:2px solid #54d9ff44;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);animation:ping 5s ease-out infinite}
+@keyframes ping{0%{width:140px;height:140px;opacity:.9}100%{width:650px;height:650px;opacity:0}}
+.network-demo h3{position:relative;text-align:center;margin:0 0 20px}.nodes{position:relative;display:flex;justify-content:center;align-items:center;gap:13px;flex-wrap:wrap}.node{background:#ffffff19;border:1px solid #ffffff55;border-radius:15px;padding:17px;text-align:center;min-width:110px;animation:bob 3s ease-in-out infinite}.node:nth-child(even){animation-delay:-1.5s}@keyframes bob{50%{transform:translateY(-7px)}}.node span{font-size:32px;display:block}.node b{font-size:13px}.hub{background:#fff;color:#283779;border-radius:50%;width:130px;height:130px;display:grid;place-content:center;text-align:center;font-weight:bold;box-shadow:0 0 35px #59dfff99;animation:glow 2s ease-in-out infinite alternate}.hub span{font-size:37px}@keyframes glow{to{box-shadow:0 0 55px #bd86ff}}
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin:22px 0}.type-card{background:#fff;border-radius:18px;padding:22px;box-shadow:0 7px 25px #27346b12;border-top:5px solid #328ce7;transition:.25s;animation:rise .7s both}.type-card:nth-child(2){border-top-color:#8151d1}.type-card:nth-child(3){border-top-color:#19a87c}.type-card:hover{transform:translateY(-7px);box-shadow:0 18px 34px #27346b20}.type-icon{font-size:38px}.type-card h3{color:#293777;margin:10px 0}.type-card p{color:#626c88;line-height:1.65;margin-bottom:0}
+.use-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px;margin:20px 0}.use{background:#fff;border-radius:15px;padding:17px;text-align:center;box-shadow:0 6px 20px #27346b10;transition:.2s}.use:hover{transform:translateY(-5px)}.use span{font-size:32px;display:block;margin-bottom:8px}.use b{color:#293777}
+.benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.benefit{background:#e7f6ff;padding:16px;border-radius:13px;line-height:1.55;color:#315078}
+.chart-wrap{background:#fff;border-radius:18px;padding:22px;box-shadow:0 7px 25px #27346b12;margin:22px 0}.chart-row{display:grid;grid-template-columns:115px 1fr 90px;gap:12px;align-items:center;margin:15px 0;font-size:14px}.bar{height:15px;background:#e9edff;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#278ee8,#8053d5);animation:grow 1.4s ease both;transform-origin:left}@keyframes grow{from{width:0}}
+.tip{background:#fff7d9;border-left:5px solid #f4bd36;border-radius:14px;padding:18px 20px;line-height:1.7;color:#68501c;margin:22px 0}
+.summary{background:linear-gradient(120deg,#e6f7ff,#eeeaff);padding:23px;border-radius:17px;line-height:1.9;margin:25px 0}.quiz{background:#fff;padding:23px;border-radius:18px;box-shadow:0 7px 25px #27346b12;margin:25px 0}.quiz details{padding:13px 0;border-bottom:1px solid #edf0f7}.quiz summary{cursor:pointer;font-weight:bold;color:#293777}.answer{color:#16805b;margin-top:9px;line-height:1.6}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}.btn{display:inline-block;padding:14px 20px;border-radius:12px;background:#5149b8;color:#fff;text-decoration:none;font-weight:bold;transition:.2s}.btn:hover{transform:translateY(-3px);background:#39318f}.btn.alt{background:#e7eaff;color:#293777}
+footer{text-align:center;padding:25px;color:#697391;font-size:13px}
+@media(max-width:650px){header{justify-content:center}nav a{margin:0 7px}.hero{padding:45px 7%}.chart-row{grid-template-columns:90px 1fr 70px;font-size:12px}.hub{width:105px;height:105px}}
+
+.mini-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px;margin:20px 0}
+.mini-picture{background:#fff;border:1px solid #e8ebf7;border-radius:16px;padding:16px 12px;text-align:center;box-shadow:0 6px 18px #27346b10;transition:.25s}
+.mini-picture:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 14px 25px #27346b20}
+.mini-picture .art{width:66px;height:66px;margin:0 auto 10px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,#e5f4ff,#eee7ff);font-size:36px;box-shadow:inset 0 0 0 1px #fff}
+.mini-picture b{display:block;color:#293777;margin-bottom:5px}.mini-picture small{color:#626c88;line-height:1.45}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:20px 0}
+.info-card{background:#fff;border-radius:16px;padding:19px;border-left:5px solid #328ce7;box-shadow:0 6px 20px #27346b10;line-height:1.65;color:#626c88}
+.info-card:nth-child(2){border-left-color:#8751d5}.info-card:nth-child(3){border-left-color:#19a87c}
+.info-card strong{color:#293777;display:block;margin-bottom:6px}
+.step-list{counter-reset:steps;display:grid;gap:11px;margin:20px 0}
+.step{counter-increment:steps;display:flex;align-items:flex-start;gap:14px;background:#fff;padding:16px;border-radius:14px;box-shadow:0 5px 17px #27346b0c;line-height:1.6;color:#58627f}
+.step:before{content:counter(steps);flex:0 0 34px;height:34px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#278ee8,#8053d5);color:white;font-weight:bold}
+
+
+/* Shared animated navigation and motion enhancements */
+.all-lessons-nav{position:sticky;top:10px;z-index:50;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;width:fit-content;max-width:calc(100% - 24px);margin:12px auto 22px;padding:9px 12px;border:1px solid #ffffff70;border-radius:18px;background:rgba(18,27,75,.88);backdrop-filter:blur(14px);box-shadow:0 10px 28px #10183b22}
+.all-lessons-nav a{display:inline-block;color:#fff!important;text-decoration:none!important;font-size:12px;font-weight:800;padding:9px 11px;border-radius:11px;background:transparent!important;transition:transform .22s,background .22s,box-shadow .22s}
+.all-lessons-nav a:hover{transform:translateY(-3px);background:#ffffff25!important;box-shadow:0 5px 16px #0002}
+@keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes shimmerGlow{0%,100%{box-shadow:0 8px 24px #4b62b51a}50%{box-shadow:0 12px 34px #6b59ff35}}
+@keyframes entrance{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.card,.info-card,.type-card,.mini-picture,.step,.benefit,.summary,.tip,.quiz,.content-card{animation:entrance .65s both}
+.card:nth-child(2),.info-card:nth-child(2),.type-card:nth-child(2),.mini-picture:nth-child(2){animation-delay:.08s}
+.card:nth-child(3),.info-card:nth-child(3),.type-card:nth-child(3),.mini-picture:nth-child(3){animation-delay:.16s}
+.card:hover,.info-card:hover,.type-card:hover,.mini-picture:hover{animation:shimmerGlow 2.2s ease-in-out infinite;transform:translateY(-5px)}
+html{scroll-behavior:smooth}
+@media(max-width:650px){.all-lessons-nav{position:relative;top:auto;gap:5px}.all-lessons-nav a{font-size:11px;padding:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+</style></head><body>
+<nav class="all-lessons-nav" aria-label="Lesson navigation">
+  <a href="index.html">⌂ Home</a>
+  <a href="lesson1.html">01 · Computers</a>
+  <a href="lesson2.html">02 · Input &amp; Output</a>
+  <a href="lesson3.html">03 · Networks</a>
+  <a href="lesson4.html">04 · Topologies</a>
+</nav>
+<header><strong>💡 Grade 9 IT</strong><nav><a href="index.html">Home</a><a href="lesson1.html">Lesson 1</a><a href="lesson2.html">Lesson 2</a><a href="#learn">Lesson 3</a></nav></header>
+<section class="hero"><div class="hero-inner"><div class="eyebrow">Lesson 03 • Connecting computers</div><h1>🌐 What is a Computer Network?</h1><p>Discover how computers connect, communicate and share resources — from a classroom to the whole world!</p></div></section>
+<main id="learn">
+<div class="welcome"><strong>🎉 Welcome to Lesson 3!</strong><p class="lead">Let's explore computer networks and learn how connected devices help people share information.</p></div>
+<h2>🎯 Learning goals</h2><div class="objectives"><div class="objective">✓ Explain what a computer network is</div><div class="objective">✓ Identify LAN and WAN</div><div class="objective">✓ Describe network uses and benefits</div></div>
+<h2>📘 What is a computer network?</h2><p class="lead">A <strong>computer network</strong> is a group of two or more computers connected together to share information and resources. Computers can connect using cables or wireless connections such as Wi-Fi. Networks help people communicate and exchange information quickly and easily.</p>
+
+<h2>🧩 Small parts that help a network work</h2>
+<p class="lead">A network is made up of connected devices and equipment. Here are a few important examples:</p>
+<div class="mini-gallery">
+<div class="mini-picture"><div class="art">💻</div><b>Computer</b><small>Sends and receives information.</small></div>
+<div class="mini-picture"><div class="art">📡</div><b>Router</b><small>Helps direct data between networks and devices.</small></div>
+<div class="mini-picture"><div class="art">🔀</div><b>Network switch</b><small>Connects several wired devices in a local network.</small></div>
+<div class="mini-picture"><div class="art">📶</div><b>Wi-Fi</b><small>Connects devices wirelessly using radio signals.</small></div>
+<div class="mini-picture"><div class="art">🧵</div><b>Network cable</b><small>Carries data between wired devices.</small></div>
+</div>
+<h2>🔗 Explore a simple network</h2><p class="lead">In a network, several devices connect and communicate. A central network device, such as a router or switch, can help data travel between connected devices.</p>
+<div class="network-demo"><h3>✨ A little network in action ✨</h3><div class="nodes"><div class="node"><span>💻</span><b>Laptop</b></div><div class="node"><span>📱</span><b>Phone</b></div><div class="hub"><span>📡</span>NETWORK<br>ROUTER</div><div class="node"><span>🖥️</span><b>Desktop</b></div><div class="node"><span>🖨️</span><b>Printer</b></div></div></div>
+<h2>🏫 Where are computer networks used?</h2><div class="use-grid"><div class="use"><span>🏫</span><b>Schools</b><p class="lead">Share lessons, files and printers.</p></div><div class="use"><span>🏢</span><b>Offices</b><p class="lead">Share documents and work together.</p></div><div class="use"><span>🏦</span><b>Banks</b><p class="lead">Connect systems and exchange data.</p></div><div class="use"><span>🏥</span><b>Hospitals</b><p class="lead">Access information across departments.</p></div><div class="use"><span>🏠</span><b>Homes</b><p class="lead">Connect phones, computers and TVs.</p></div></div>
+<h2>🔌 How can devices connect?</h2>
+<div class="info-grid">
+<div class="info-card"><strong>🧵 Wired connection</strong>Devices connect using physical cables, such as Ethernet cables. Wired connections are often reliable and are commonly used in computer labs and offices.</div>
+<div class="info-card"><strong>📶 Wireless connection</strong>Devices connect without a physical data cable, often using Wi-Fi. This makes it convenient to connect laptops, tablets and phones around a home or school.</div>
+<div class="info-card"><strong>🔐 Network password</strong>Many wireless networks use a password to help prevent people who are not allowed from connecting. Keep your home network password private.</div>
+</div>
+<h2>⚙️ What happens when we share a file?</h2>
+<div class="step-list">
+<div class="step"><div><strong>Choose a file.</strong><br>A student selects a document on their computer.</div></div>
+<div class="step"><div><strong>Send it through the network.</strong><br>The computer sends the data using a wired or wireless connection.</div></div>
+<div class="step"><div><strong>The other device receives it.</strong><br>A permitted computer on the network receives the shared file.</div></div>
+</div>
+<h2>🛡️ Use networks safely</h2>
+<div class="info-grid">
+<div class="info-card"><strong>🔒 Protect passwords</strong>Use strong passwords and never share them with strangers.</div>
+<div class="info-card"><strong>👀 Think before sharing</strong>Do not share private information with people you do not know.</div>
+<div class="info-card"><strong>✅ Ask for help</strong>If something strange happens online, tell a parent, teacher or trusted adult.</div>
+</div>
+<h2>🧭 Types of computer networks</h2><div class="types">
+<article class="type-card"><div class="type-icon">🏫</div><h3>LAN — Local Area Network</h3><p>A LAN connects computers in a small area, such as one home, school building or office. It is useful for sharing files and devices nearby.</p></article>
+<article class="type-card"><div class="type-icon">🌍</div><h3>WAN — Wide Area Network</h3><p>A WAN connects computers and smaller networks over large geographical areas, such as across cities, countries or continents.</p></article>
+<article class="type-card"><div class="type-icon">🌐</div><h3>The Internet</h3><p>The Internet is a huge worldwide network of connected networks. It allows people around the world to communicate and access information.</p></article>
+</div>
+<h2>🖼️ Examples of network types</h2>
+<div class="mini-gallery">
+<div class="mini-picture"><div class="art">🏫</div><b>School LAN</b><small>Computers in a school computer lab can share files and a printer.</small></div>
+<div class="mini-picture"><div class="art">🏙️</div><b>City-wide WAN</b><small>Connects networks in different buildings or locations.</small></div>
+<div class="mini-picture"><div class="art">🌍</div><b>The Internet</b><small>Connects networks and people around the world.</small></div>
+</div>
+<h2>📏 Comparing network sizes</h2><p class="lead">This simple visual compares the general area covered by each network type. It is an illustration, not a measurement.</p><div class="chart-wrap"><div class="chart-row"><b>LAN</b><div class="bar"><i style="width:18%"></i></div><span>Small area</span></div><div class="chart-row"><b>WAN</b><div class="bar"><i style="width:68%"></i></div><span>Large area</span></div><div class="chart-row"><b>Internet</b><div class="bar"><i style="width:100%"></i></div><span>Worldwide</span></div></div>
+<h2>⭐ Benefits of computer networks</h2><div class="benefits"><div class="benefit">📁 <b>File sharing:</b> People can share documents and pictures.</div><div class="benefit">🖨️ <b>Resource sharing:</b> Many computers can use the same printer.</div><div class="benefit">💬 <b>Communication:</b> Users can send messages and exchange information.</div><div class="benefit">🤝 <b>Teamwork:</b> People can work together and share resources.</div><div class="benefit">⏱️ <b>Save time:</b> Sharing information can be faster and easier.</div></div>
+<div class="tip"><strong>💡 Remember:</strong><br><b>LAN</b> = Local / small area. <b>WAN</b> = Wide / large area. <b>Internet</b> = Worldwide network of networks.</div>
+<div class="summary"><strong>⭐ Lesson 3 summary</strong><br>✓ A computer network connects two or more computers.<br>✓ Networks help share information and resources.<br>✓ Connections can use cables or wireless signals.<br>✓ LAN is used in small areas, such as a school or office.<br>✓ WAN connects computers over large geographical areas.<br>✓ The Internet is a worldwide network.</div>
+<div class="tip"><strong>🏆 Fun fact:</strong> The Internet connects billions of devices around the world. It is much bigger than a network in one school or office!</div>
+<section class="quiz" id="quiz"><h2>📝 Quick quiz</h2><p class="lead">Think about each answer, then open the question to check!</p>
+<details><summary>1. What is a computer network?</summary><div class="answer">A group of two or more computers connected to share information and resources.</div></details>
+<details><summary>2. What does LAN stand for?</summary><div class="answer">Local Area Network.</div></details>
+<details><summary>3. Which type of network connects computers over large geographical areas?</summary><div class="answer">WAN — Wide Area Network.</div></details>
+<details><summary>4. Give one example of a resource that can be shared on a network.</summary><div class="answer">A printer, files or documents are examples.</div></details>
+<details><summary>5. What is one difference between wired and wireless connections?</summary><div class="answer">Wired connections use physical cables. Wireless connections send data without a physical data cable, often using Wi-Fi.</div></details>
+<details><summary>6. What does a network switch do?</summary><div class="answer">It connects several wired devices together in a local network.</div></details>
+</section>
+<div class="actions"><a class="btn alt" href="lesson2.html">← Previous: Lesson 2</a><a class="btn" href="lesson4.html">Next: Lesson 4 →</a><a class="btn alt" href="index.html">⌂ Back to Home</a></div>
+</main><footer>Grade 9 Information Technology • Learn • Explore • Grow 🌟</footer>
+</body></html>

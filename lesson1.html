@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Lesson 1 | Types of Computers</title>
+		<style>
+			*{box-sizing:border-box}
+			body{margin:0;font-family:Arial,sans-serif;color:#17234d;background:#f3f6ff}
+			header{color:#fff;padding:17px 6%;background:linear-gradient(110deg,#18265e,#6338a2,#087eaa);background-size:200% 200%;animation:shift 10s ease infinite;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+			@keyframes shift{50%{background-position:100% 50%}}
+			header strong{font-size:19px}
+			nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:bold;font-size:14px}
+			.hero{padding:65px 7% 55px;color:#fff;background:linear-gradient(130deg,#202d70,#6442a5);position:relative;overflow:hidden}
+			.hero:after{content:"";position:absolute;width:280px;height:280px;border:45px solid #ffffff12;border-radius:50%;right:7%;top:-110px;animation:orbit 13s linear infinite}
+			@keyframes orbit{to{transform:rotate(360deg)}}
+			.hero-inner{max-width:1050px;margin:auto;position:relative;z-index:1;animation:up .8s both}
+			@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+			.eyebrow{letter-spacing:2px;text-transform:uppercase;font-size:12px;color:#bfeaff;font-weight:bold}
+			.hero h1{font-size:clamp(36px,6vw,60px);margin:14px 0}
+			.hero p{font-size:18px;line-height:1.7;max-width:740px;color:#e9edff}
+			main{max-width:1100px;margin:35px auto;padding:0 22px}
+			.welcome{background:#fff;border-radius:18px;padding:22px 25px;box-shadow:0 8px 28px #27346b12;margin-bottom:28px;border-left:5px solid #5d55d9}
+			h2{font-size:27px;margin:35px 0 10px}
+			.lead{line-height:1.75;color:#58627f}
+			.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px;margin:20px 0}
+			.objective{background:#e7edff;padding:17px;border-radius:14px;font-weight:bold;color:#34427c}
+			.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px;margin:22px 0}
+			.card{background:#fff;border-radius:18px;padding:22px;box-shadow:0 7px 25px #27346b12;border:1px solid #e8ebf7;transition:transform .25s,box-shadow .25s;animation:up .7s both}
+			.card:hover{transform:translateY(-8px);box-shadow:0 18px 35px #35458c22}
+			.emoji{font-size:42px}
+			.card h3{margin:12px 0 8px;color:#293777}
+			.card p{color:#626c88;line-height:1.65;margin:0}
+			table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 22px #27346b12;margin:18px 0}
+			th,td{text-align:left;padding:14px;border-bottom:1px solid #e9ecf5}
+			th{background:#e4eaff;color:#293777}
+			tr:last-child td{border:0}
+			.summary{background:linear-gradient(120deg,#e6f7ff,#eeeaff);padding:23px;border-radius:17px;line-height:1.8;margin:25px 0}
+			.quiz{background:#fff;padding:23px;border-radius:18px;box-shadow:0 7px 25px #27346b12;margin:25px 0}
+			.quiz details{padding:13px 0;border-bottom:1px solid #edf0f7}
+			.quiz summary{cursor:pointer;font-weight:bold;color:#293777}
+			.answer{color:#16805b;margin-top:9px}
+			.actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}
+			.btn{display:inline-block;padding:14px 20px;border-radius:12px;background:#5149b8;color:#fff;text-decoration:none;font-weight:bold;transition:.2s}
+			.btn:hover{transform:translateY(-3px);background:#39318f}
+			.btn.alt{background:#e7eaff;color:#293777}
+			footer{text-align:center;padding:25px;color:#697391;font-size:13px}
+			@media(max-width:600px){header{justify-content:center}nav a{margin:0 7px}.hero{padding:48px 7%}}
+			
+			/* Shared animated navigation and motion enhancements */
+			.all-lessons-nav{position:sticky;top:10px;z-index:50;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;width:fit-content;max-width:calc(100% - 24px);margin:12px auto 22px;padding:9px 12px;border:1px solid #ffffff70;border-radius:18px;background:rgba(18,27,75,.88);backdrop-filter:blur(14px);box-shadow:0 10px 28px #10183b22}
+			.all-lessons-nav a{display:inline-block;color:#fff!important;text-decoration:none!important;font-size:12px;font-weight:800;padding:9px 11px;border-radius:11px;background:transparent!important;transition:transform .22s,background .22s,box-shadow .22s}
+			.all-lessons-nav a:hover{transform:translateY(-3px);background:#ffffff25!important;box-shadow:0 5px 16px #0002}
+			@keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+			@keyframes shimmerGlow{0%,100%{box-shadow:0 8px 24px #4b62b51a}50%{box-shadow:0 12px 34px #6b59ff35}}
+			@keyframes entrance{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+			.card,.info-card,.type-card,.mini-picture,.step,.benefit,.summary,.tip,.quiz,.content-card{animation:entrance .65s both}
+			.card:nth-child(2),.info-card:nth-child(2),.type-card:nth-child(2),.mini-picture:nth-child(2){animation-delay:.08s}
+			.card:nth-child(3),.info-card:nth-child(3),.type-card:nth-child(3),.mini-picture:nth-child(3){animation-delay:.16s}
+			.card:hover,.info-card:hover,.type-card:hover,.mini-picture:hover{animation:shimmerGlow 2.2s ease-in-out infinite;transform:translateY(-5px)}
+			html{scroll-behavior:smooth}
+			@media(max-width:650px){.all-lessons-nav{position:relative;top:auto;gap:5px}.all-lessons-nav a{font-size:11px;padding:8px}}
+			@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+			
+		</style>
+	</head>
+	<body>
+		<nav class="all-lessons-nav" aria-label="Lesson navigation">
+	  		<a href="index.html">⌂ Home</a>
+	  		<a href="lesson1.html">01 · Computers</a>
+	  		<a href="lesson2.html">02 · Input &amp; Output</a>
+	  		<a href="lesson3.html">03 · Networks</a>
+	  		<a href="lesson4.html">04 · Topologies</a>
+		</nav>
+		<header><strong>💡 Grade 9 IT</strong><nav><a href="index.html">Home</a><a href="#learn">Lesson</a><a href="#quiz">Quiz</a></nav></header>
+		<section class="hero"><div class="hero-inner"><div class="eyebrow">Lesson 01 • Computer basics</div><h1>Types of Computers</h1><p>Explore the different computers we use every day, discover what makes each one special, and learn where they are useful.</p></div></section>
+		<main id="learn">
+			<div class="welcome"><strong>🎉 Welcome to Lesson 1!</strong><p class="lead">You are ready to learn. Let's explore computers together!</p></div>
+			<h2>🎯 What you will learn</h2>
+				 <div class="objectives">
+					<div class="objective">✓ Identify common types of computers</div>
+					<div class="objective">✓ Describe their main features</div>
+					<div class="objective">✓ Give examples of how they are used</div>
+				</div>
+			<h2>📘 What is a computer?</h2><p class="lead">A computer is an electronic device that accepts data, processes it according to instructions, stores information, and produces useful results. Computers come in different shapes and sizes because people use them for different tasks.</p>
+			<h2>💻 Five types of computers</h2>
+				<div class="cards">
+					<article class="card">  <div class="emoji">🖥️</div> <h3>1. Desktop computer</h3><p>A desktop computer is designed to stay on a desk. It usually has a separate monitor, keyboard, mouse and system unit. It is useful in offices, schools and homes.</p>  </article>
+					<article class="card">  <div class="emoji">💻</div> <h3>2. Laptop computer</h3><p>A laptop is a portable computer with a screen, keyboard, touchpad and battery built in. You can carry it and use it in different places.</p>  </article>
+					<article class="card">  <div class="emoji">📱  </div> <h3>3. Tablet computer</h3><p>A tablet is a lightweight computer with a touchscreen. People use it to read, watch videos, draw, study and browse the internet.</p>  </article>
+					<article class="card">  <div class="emoji">📲 </div> <h3>4. Smartphone</h3><p>A smartphone is a mobile phone with computer features. It can run apps, take photos, connect to the internet and help people communicate.</p>  </article>
+					<article class="card">  <div class="emoji">🚀</div> <h3>5. Supercomputer</h3><p>A supercomputer is an extremely powerful computer that can process huge amounts of data. Scientists use supercomputers for weather forecasting, research and complex simulations.</p>  </article>
+				</div>
+			<h2>🔎 Quick comparison</h2>
+			<table>
+				<thead>
+					<tr><th>Computer type</th><th>Easy to carry?</th><th>Common use</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>Desktop</td><td>No</td><td>Office and school work</td></tr>
+					<tr><td>Laptop</td><td>Yes</td><td>Study and work on the move</td></tr>
+					<tr><td>Tablet</td><td>Yes</td><td>Reading and learning</td></tr>
+					<tr><td>Smartphone</td><td>Yes</td><td>Communication and apps</td></tr>
+					<tr><td>Supercomputer</td><td>No</td><td>Scientific research</td></tr>
+				</tbody>
+			</table>
+			<div class="summary">  <strong>⭐ Remember!</strong> <br> Computers can be designed for different needs. A desktop is suited to a fixed workspace, a laptop or tablet is easy to carry, a smartphone fits in your pocket, and a supercomputer handles very complex tasks.</div>
+			<section class="quiz" id="quiz">
+				<h2>📝 Check what you learned</h2>
+				<p class="lead">Choose a question to reveal its answer. Try to answer before opening it!</p>
+				<details><summary>1. Which computer is designed to be easy to carry and has a built-in keyboard?</summary><div class="answer">A laptop computer.</div></details>
+				<details><summary>2. Which device commonly uses a touchscreen and is larger than a smartphone?</summary><div class="answer">A tablet computer.</div></details>
+				<details><summary>3. What type of computer is used for very complex scientific calculations?</summary><div class="answer">A supercomputer.</div></details>
+				<details><summary>4. Name two parts commonly connected to a desktop computer.</summary><div class="answer">A monitor and keyboard. A mouse and system unit are also common parts.</div></details>
+			</section>
+			<div class="actions"><a class="btn alt" href="index.html">← Back to Home</a><a class="btn" href="lesson2.html">Next Lesson: Input &amp; Output Devices →</a></div>
+		</main>
+		<footer>Grade 9 Information Technology • Keep learning and keep exploring! 🌟</footer>
+	</body>
+</html>

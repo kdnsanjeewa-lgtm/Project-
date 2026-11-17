@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 4 | Types of Network Topologies</title>
+<style>
+:root{--navy:#10183b;--purple:#7657ff;--blue:#39b9ff;--ink:#172044;--muted:#65708e;--paper:#f5f7ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);overflow-x:hidden}
+header{position:relative;overflow:hidden;color:white;padding:24px max(6%,calc((100% - 1120px)/2));background:linear-gradient(120deg,#111a46,#342b83 55%,#087eb5)}
+header:before,header:after{content:"";position:absolute;border:1px solid #ffffff25;border-radius:50%;width:360px;height:360px;animation:orbit 16s linear infinite}
+header:before{right:-100px;top:-220px}header:after{right:100px;top:-270px;width:470px;height:470px;animation-direction:reverse}
+@keyframes orbit{to{transform:rotate(360deg)}}
+nav{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:.5px}.navlinks{display:flex;gap:10px;flex-wrap:wrap}
+nav a,.back{color:white;text-decoration:none;padding:9px 13px;border:1px solid #ffffff55;border-radius:30px;font-size:.9rem}
+.hero{position:relative;z-index:1;max-width:850px;padding:66px 0 58px}
+.eyebrow{display:inline-block;background:#ffffff20;border:1px solid #ffffff45;border-radius:30px;padding:8px 13px;font-size:.82rem}
+h1{font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.05;margin:20px 0 14px}
+.hero p{max-width:690px;color:#e2eaff;font-size:1.08rem;line-height:1.75}
+main{max-width:1120px;margin:auto;padding:34px 20px 70px}
+.section-title{font-size:1.8rem;margin:38px 0 10px}.lead{color:var(--muted);line-height:1.8;max-width:850px}
+.pill{display:inline-block;background:#e9e5ff;color:#533bd1;font-size:.78rem;font-weight:800;padding:7px 11px;border-radius:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px;margin-top:22px}
+.card{background:white;border:1px solid #e6e9f5;border-radius:20px;padding:20px;box-shadow:0 10px 28px #1b27600c;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-7px);box-shadow:0 18px 35px #293d8820}
+.card h3{margin:12px 0 8px}.card p{color:var(--muted);line-height:1.65;font-size:.95rem;margin:0}
+.diagram{height:150px;background:linear-gradient(135deg,#f0f3ff,#e9f8ff);border-radius:15px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+svg{width:100%;height:100%;max-width:230px}
+.wire{stroke:#745cff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.node{fill:#fff;stroke:#279de7;stroke-width:2.5}
+.hub{fill:#7657ff;stroke:#fff;stroke-width:2}
+.nodeText{font: bold 9px Arial;fill:#3b4770}
+@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+.node{animation:pulse 2.4s ease-in-out infinite}
+.callout{margin-top:28px;padding:22px;border-radius:18px;background:linear-gradient(110deg,#eeeaff,#e6f7ff);border:1px solid #dedcff}
+.callout strong{color:#4534b5}
+.compare{width:100%;border-collapse:collapse;background:white;border-radius:16px;overflow:hidden;box-shadow:0 8px 25px #1b27600c;margin-top:18px}
+.compare th,.compare td{text-align:left;padding:14px;border-bottom:1px solid #edf0f8;line-height:1.5}
+.compare th{background:#282b70;color:white}.compare tr:last-child td{border:0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:18px}
+.step{background:white;border-radius:15px;padding:16px;border:1px solid #e8ebf5}
+.step b{display:block;color:#644ce0;margin-bottom:7px}
+details{background:white;border:1px solid #e5e9f4;border-radius:14px;padding:15px 18px;margin:12px 0}
+summary{cursor:pointer;font-weight:700}details p{color:var(--muted);line-height:1.7}
+.quiz{background:#151d4b;color:white;border-radius:22px;padding:24px;margin-top:34px}
+.quiz p{color:#dce5ff;line-height:1.65}.quiz details{color:var(--ink)}
+footer{text-align:center;background:#11183e;color:#cbd5ff;padding:25px}
+footer a{color:white}
+@media(max-width:600px){.hero{padding:48px 0}.compare{font-size:.86rem}.compare th,.compare td{padding:10px}}
+
+/* Shared animated navigation and motion enhancements */
+.all-lessons-nav{position:sticky;top:10px;z-index:50;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;width:fit-content;max-width:calc(100% - 24px);margin:12px auto 22px;padding:9px 12px;border:1px solid #ffffff70;border-radius:18px;background:rgba(18,27,75,.88);backdrop-filter:blur(14px);box-shadow:0 10px 28px #10183b22}
+.all-lessons-nav a{display:inline-block;color:#fff!important;text-decoration:none!important;font-size:12px;font-weight:800;padding:9px 11px;border-radius:11px;background:transparent!important;transition:transform .22s,background .22s,box-shadow .22s}
+.all-lessons-nav a:hover{transform:translateY(-3px);background:#ffffff25!important;box-shadow:0 5px 16px #0002}
+@keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes shimmerGlow{0%,100%{box-shadow:0 8px 24px #4b62b51a}50%{box-shadow:0 12px 34px #6b59ff35}}
+@keyframes entrance{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.card,.info-card,.type-card,.mini-picture,.step,.benefit,.summary,.tip,.quiz,.content-card{animation:entrance .65s both}
+.card:nth-child(2),.info-card:nth-child(2),.type-card:nth-child(2),.mini-picture:nth-child(2){animation-delay:.08s}
+.card:nth-child(3),.info-card:nth-child(3),.type-card:nth-child(3),.mini-picture:nth-child(3){animation-delay:.16s}
+.card:hover,.info-card:hover,.type-card:hover,.mini-picture:hover{animation:shimmerGlow 2.2s ease-in-out infinite;transform:translateY(-5px)}
+html{scroll-behavior:smooth}
+@media(max-width:650px){.all-lessons-nav{position:relative;top:auto;gap:5px}.all-lessons-nav a{font-size:11px;padding:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+</style>
+</head>
+<body>
+<nav class="all-lessons-nav" aria-label="Lesson navigation">
+  <a href="index.html">⌂ Home</a>
+  <a href="lesson1.html">01 · Computers</a>
+  <a href="lesson2.html">02 · Input &amp; Output</a>
+  <a href="lesson3.html">03 · Networks</a>
+  <a href="lesson4.html">04 · Topologies</a>
+</nav>
+<header>
+<nav><div class="brand">✦ GRADE 9 • IT WORLD</div><div class="navlinks"><a href="index.html">Home</a><a href="lesson3.html">Lesson 3</a><a href="lesson4.html">Lesson 4</a><a href="#topologies">Lesson 4</a></div></nav>
+<div class="hero">
+<span class="eyebrow">📘 FINAL LESSON • LESSON 4</span>
+<h1>Types of Network<br>Topologies</h1>
+<p>Discover how computers and other devices are arranged in a network. Explore five common topologies with simple diagrams, examples, advantages and disadvantages.</p>
+<a class="back" href="lesson3.html">← Back to Lesson 3</a>
+</div>
+</header>
+<main>
+<span class="pill">LEARN • EXPLORE • COMPARE</span>
+<h2 class="section-title">What is a Network Topology?</h2>
+<p class="lead">Network topology is the way computers and other devices are arranged and connected in a computer network. It shows how devices are connected to each other and helps us understand how information travels through the network. A topology can describe the physical arrangement of cables and devices or the way data moves between them.</p>
+<div class="callout"><strong>Think of it this way:</strong> A network topology is like a road map. The devices are places, and the connections are roads that carry information from one place to another.</div>
+
+<h2 class="section-title" id="topologies">The 5 Main Network Topologies</h2>
+<p class="lead">Select each diagram to understand the basic arrangement. The small computer symbols represent devices, while the lines show network connections.</p>
+<div class="grid">
+<article class="card"><div class="diagram"><svg viewBox="0 0 230 150" aria-label="Bus topology diagram"><path class="wire" d="M24 76H206"/><path class="wire" d="M55 76V35M110 76V35M165 76V35M55 76V117M110 76V117M165 76V117"/><g><rect class="node" x="42" y="19" width="26" height="18" rx="4"/><rect class="node" x="97" y="19" width="26" height="18" rx="4"/><rect class="node" x="152" y="19" width="26" height="18" rx="4"/><rect class="node" x="42" y="116" width="26" height="18" rx="4"/><rect class="node" x="97" y="116" width="26" height="18" rx="4"/><rect class="node" x="152" y="116" width="26" height="18" rx="4"/></g></svg></div><h3>1. Bus Topology</h3><p>All computers connect to one main cable called the backbone. Data travels along this shared cable and reaches the connected devices.</p><p><b>Advantage:</b> Simple and inexpensive for a small network.</p><p><b>Disadvantage:</b> If the main cable fails, the whole network can stop working.</p></article>
+
+<article class="card"><div class="diagram"><svg viewBox="0 0 230 150" aria-label="Star topology diagram"><path class="wire" d="M115 75L115 25M115 75L183 52M115 75L183 112M115 75L47 112M115 75L47 52"/><rect class="hub" x="99" y="61" width="32" height="28" rx="7"/><g><rect class="node" x="102" y="13" width="26" height="18" rx="4"/><rect class="node" x="178" y="39" width="26" height="18" rx="4"/><rect class="node" x="178" y="103" width="26" height="18" rx="4"/><rect class="node" x="34" y="103" width="26" height="18" rx="4"/><rect class="node" x="34" y="39" width="26" height="18" rx="4"/></g></svg></div><h3>2. Star Topology</h3><p>Every computer connects to a central device, such as a switch or hub. Information usually passes through this central device.</p><p><b>Advantage:</b> One computer or cable failing usually does not affect the others.</p><p><b>Disadvantage:</b> If the central switch or hub fails, the network may stop working.</p></article>
+
+<article class="card"><div class="diagram"><svg viewBox="0 0 230 150" aria-label="Ring topology diagram"><path class="wire" d="M115 24L174 55L158 112L72 112L56 55Z"/><g><rect class="node" x="102" y="13" width="26" height="18" rx="4"/><rect class="node" x="166" y="46" width="26" height="18" rx="4"/><rect class="node" x="145" y="105" width="26" height="18" rx="4"/><rect class="node" x="59" y="105" width="26" height="18" rx="4"/><rect class="node" x="43" y="46" width="26" height="18" rx="4"/></g></svg></div><h3>3. Ring Topology</h3><p>Each computer connects to two neighbouring computers, forming a closed circular path. Data moves around the ring from device to device.</p><p><b>Advantage:</b> Data can travel in an organised path.</p><p><b>Disadvantage:</b> A break in the ring can interrupt communication in a basic ring network.</p></article>
+
+<article class="card"><div class="diagram"><svg viewBox="0 0 230 150" aria-label="Mesh topology diagram"><g class="wire"><path d="M55 35L175 35L55 112L175 112Z"/><path d="M55 35L55 112M175 35L175 112M55 35L175 112M175 35L55 112"/></g><g><rect class="node" x="42" y="26" width="26" height="18" rx="4"/><rect class="node" x="162" y="26" width="26" height="18" rx="4"/><rect class="node" x="42" y="103" width="26" height="18" rx="4"/><rect class="node" x="162" y="103" width="26" height="18" rx="4"/></g></svg></div><h3>4. Mesh Topology</h3><p>Devices connect to many or all other devices. This creates several possible paths for data to travel through the network.</p><p><b>Advantage:</b> If one connection fails, another path may still work.</p><p><b>Disadvantage:</b> It can require many cables and be expensive to set up.</p></article>
+
+<article class="card"><div class="diagram"><svg viewBox="0 0 230 150" aria-label="Tree topology diagram"><g class="wire"><path d="M115 27V55M115 55L58 88M115 55L172 88M58 88L30 120M58 88L85 120M172 88L145 120M172 88L200 120"/></g><g><rect class="hub" x="102" y="15" width="26" height="20" rx="5"/><rect class="node" x="45" y="79" width="26" height="18" rx="4"/><rect class="node" x="159" y="79" width="26" height="18" rx="4"/><rect class="node" x="17" y="111" width="26" height="18" rx="4"/><rect class="node" x="72" y="111" width="26" height="18" rx="4"/><rect class="node" x="132" y="111" width="26" height="18" rx="4"/><rect class="node" x="187" y="111" width="26" height="18" rx="4"/></g></svg></div><h3>5. Tree Topology</h3><p>Devices are arranged in levels, like branches of a tree. Several star networks can be connected to a main backbone.</p><p><b>Advantage:</b> It is useful for large networks that need to be divided into sections.</p><p><b>Disadvantage:</b> If an important main connection fails, many devices may lose access.</p></article>
+</div>
+
+<h2 class="section-title">Compare the Topologies</h2>
+<p class="lead">This table gives a quick overview of how the five arrangements are different.</p>
+<table class="compare"><thead><tr><th>Topology</th><th>Arrangement</th><th>Main point</th></tr></thead><tbody>
+<tr><td>Bus</td><td>One main cable</td><td>Simple shared connection</td></tr><tr><td>Star</td><td>Devices connect to a centre</td><td>Easy to manage devices individually</td></tr><tr><td>Ring</td><td>Closed circular path</td><td>Devices connect to two neighbours</td></tr><tr><td>Mesh</td><td>Many interconnections</td><td>Alternative paths may be available</td></tr><tr><td>Tree</td><td>Branch-like levels</td><td>Suitable for organised larger networks</td></tr>
+</tbody></table>
+
+<h2 class="section-title">How to Choose a Topology</h2>
+<div class="steps"><div class="step"><b>01 • Network size</b>Think about how many computers and devices need to connect.</div><div class="step"><b>02 • Cost</b>Consider the cables, switches and other equipment needed.</div><div class="step"><b>03 • Reliability</b>Think about what happens if a cable or device stops working.</div><div class="step"><b>04 • Expansion</b>Choose an arrangement that can support future devices if needed.</div></div>
+
+<div class="callout"><strong>Remember:</strong> There is no single topology that is best for every network. The right choice depends on the network's size, cost, reliability needs and purpose.</div>
+<h2 class="section-title">Lesson Summary</h2>
+<ul class="lead"><li>Network topology shows how devices are connected.</li><li>Bus topology uses one main cable.</li><li>Star topology uses a central switch or hub.</li><li>Ring topology connects devices in a circular shape.</li><li>Mesh topology connects devices through many paths.</li><li>Tree topology uses a branch-like structure.</li><li>Each topology has advantages and disadvantages.</li></ul>
+
+<section class="quiz"><span class="pill">CHECK YOUR KNOWLEDGE</span><h2>Quick Quiz 🧠</h2><p>Try to answer each question before opening the answer.</p>
+<details><summary>1. What does network topology describe?</summary><p>It describes the way computers and other devices are arranged and connected in a network.</p></details>
+<details><summary>2. Which topology uses one main cable?</summary><p>Bus topology.</p></details>
+<details><summary>3. Which topology uses a central switch or hub?</summary><p>Star topology.</p></details>
+<details><summary>4. Which topology has a circular arrangement?</summary><p>Ring topology.</p></details>
+<details><summary>5. Which topology can provide many paths between devices?</summary><p>Mesh topology.</p></details>
+<details><summary>6. Which topology looks like branches of a tree?</summary><p>Tree topology.</p></details>
+</section>
+</main>
+<footer>🌐 Grade 9 Information Technology • Lesson 4<br><br><a href="lesson3.html">← Previous lesson</a> &nbsp; | &nbsp; <a href="index.html">Back to Home</a></footer>
+</body>
+</html>
